@@ -24,11 +24,17 @@ public class HelloController {
     public TableColumn<Phone, Integer> storageColumn;
     public TableColumn<Phone, String> processorColumn;
     public TableColumn<Phone, String> chargerTypeColumn;
-    public TableColumn<Apple, String> LiDARColumn;
+    public TableColumn<Phone, String> LiDARColumn;
 
 
     public void initialize() throws Exception {
         restoreOrReadData();
+
+        ArrayList<Phone> temporaryList = (ArrayList<Phone>) Phone.getPhones();
+        // Turn the read data's ArrayList into an ObservableList
+        ObservableList temporaryObservableList = FXCollections.observableArrayList(temporaryList);
+        // Make that ObservableList the list for my TableView
+        welcomeText.setItems(temporaryObservableList);
 
         screenSizeColumn.setCellValueFactory(new PropertyValueFactory<>("screenSize"));
         storageColumn.setCellValueFactory(new PropertyValueFactory<>("storage"));
@@ -67,9 +73,9 @@ public class HelloController {
                     filmFromTableRow.setChargerType(t.getNewValue());
                 });
         LiDARColumn.setOnEditCommit(
-                (TableColumn.CellEditEvent<Apple, String> t) -> {
+                (TableColumn.CellEditEvent<Phone, String> t) -> {
                     int tableRow = t.getTablePosition().getRow();
-                    Apple filmFromTableRow = t.getTableView().getItems().get(tableRow);
+                    Apple filmFromTableRow = (Apple)t.getTableView().getItems().get(tableRow);
                     filmFromTableRow.setLiDAR(t.getNewValue());
                 });
     }
@@ -98,8 +104,5 @@ public class HelloController {
             System.out.println(Phone.getPhones());
         }
 
-        ArrayList<Phone> temporaryList = (ArrayList<Phone>) Phone.getPhones();
-        ObservableList temporaryObservableList = FXCollections.observableArrayList(temporaryList);
-        welcomeText.setItems(temporaryObservableList);
     }
 }

@@ -13,6 +13,11 @@ public class Phone {
     private String phoneType;
 
     public Phone(int storage, float screenSize, String processor, String chargerType) {
+        this.setStorage(storage);
+        this.setScreenSize(screenSize);
+        this.setProcessor(processor);
+        this.setChargerType(chargerType);
+        phones.add(this);
     }
 
 

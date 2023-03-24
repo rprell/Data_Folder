@@ -66,7 +66,7 @@ public class Apple extends Phone {
             String line = scan.nextLine();
             //System.out.println("line " + lineNumber + " :" + line);
 
-            Scanner barScanner = new Scanner(file);
+            Scanner barScanner = new Scanner(line);
 
             barScanner.useDelimiter("\t");
 
@@ -77,6 +77,7 @@ public class Apple extends Phone {
             if (dataArray.size() > 1) {
                 allArrays.add(dataArray);
             }
+        }
 
             System.out.println(allArrays);
             System.out.println("BREAK");
@@ -99,7 +100,7 @@ public class Apple extends Phone {
                 }
 
         }
-    }
+
 
 }
 
